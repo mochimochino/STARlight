@@ -221,6 +221,10 @@ public:
         double       axionMass             () const { return _axionMass.value();              }  ///< returns axion mass //AXION HACK
 	int          bslopeDefinition      () const { return _bslopeDefinition.value();       }  ///< returns the definition of b-slope
 	double       bslopeValue           () const { return _bslopeValue.value();            }  ///< returns the value of b-slope
+    // New test
+    double       bslopeN               () const { return _bslopeN.value();                }  ///< returns exponent n for BSLOPE_DEFINITION=3
+	double       bslopeTmax            () const { return _bslopeTmax.value();             }  ///< returns t_max [GeV^2] for BSLOPE_DEFINITION=3
+    // ---
 	int          printVM               () const { return _printVM.value();                }  ///< returns the printVM value
 	int          impulseVM             () const { return _impulseVM.value();              }  ///< returns the impulseVM value
 	int          quantumGlauber        () const { return _quantumGlauber.value();         }  ///< returns the quantum glauber value
@@ -366,6 +370,10 @@ public:
 	void setAxionMass        (double v)  {  _axionMass = v;                   }  ///< sets axion mass    //AXION HACK
 	void setbslopeDefinition      (int v)  {  _bslopeDefinition = v;          }  ///< sets the definition of b slope
         void setbslopeValue           (double v)  {  _bslopeValue = v;            }  ///< sets the value of b slope
+        // New test
+        void setbslopeN               (double v)  {  _bslopeN = v;                }  ///< sets exponent n for BSLOPE_DEFINITION=3
+	    void setbslopeTmax            (double v)  {  _bslopeTmax = v;             }  ///< sets t_max for BSLOPE_DEFINITION=3
+        // ---
 	void setprintVM               (int v)  {  _printVM = v;                   }  ///< sets the value of _printVM
         void setimpulseVM             (int v)  {  _impulseVM = v;                 }  ///< sets the value of _impulseVM
 	void setquantumGlauber        (int v)  {  _quantumGlauber = v;            }  ///< sets the value of quantum_glauber
@@ -450,6 +458,10 @@ private:
         parameter<double, VALIDITY_CHECK>          _axionMass;               ///Axion mass//AXION HACK
         parameter<unsigned int, VALIDITY_CHECK>    _bslopeDefinition;        ///< Optional parameter to set different values of slope parameter
         parameter<double, VALIDITY_CHECK>          _bslopeValue;             ///< Value of slope parameter when _bslopeDefinition is set to 1
+        // New test
+        parameter<double, VALIDITY_CHECK>          _bslopeN;                 ///< sets exponents n for BSLOPE_DEFINITION=3
+        parameter<double, VALIDITY_CHECK>          _bslopeTmax;              ///< upper t limit [GeV^2] for BSLOPE_DEFINITION=3            
+        // ---
         parameter<unsigned int, VALIDITY_CHECK>    _printVM;                 ///< Optional parameter to set printing options for VM cross section
         parameter<unsigned int, VALIDITY_CHECK>    _impulseVM;               ///< Optional parameter to use impulse approximation (no nuclear effects) for VM cross section.
 	parameter<unsigned int, VALIDITY_CHECK>    _quantumGlauber;          ///< Optional parameter.  Set = 1 to use Quantum Glauber calculation, rather than Classical Glauber

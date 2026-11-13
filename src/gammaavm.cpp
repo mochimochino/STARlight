@@ -60,6 +60,14 @@ Gammaavectormeson::Gammaavectormeson(const inputParameters& inputParametersInsta
 	_VMbslope=0.;//Will define in wide/narrow constructor
         _bslopeDef=inputParametersInstance.bslopeDefinition();
 	_bslopeVal=inputParametersInstance.bslopeValue();
+	// New test
+	_bslopeN=inputParametersInstance.bslopeN();
+	_bslopeTmax=inputParametersInstance.bslopeTmax();
+	if( _bslopeDef == 3 && (_bslopeN <= 1. || _bslopeVal <= 0. || _bslopeTmax <= 0.) ){
+	  cout<<" ERROR: BSLOPE_DEFINITION=3 needs BSLOPE_N > 1, BSLOPE_VALUE > 0, BSLOPE_TMAX > 0"<<endl;
+	  exit(-1);
+	}
+	// ---
 	_pEnergy= inputParametersInstance.protonEnergy();
 	_VMpidtest=inputParametersInstance.prodParticleType();
 	_VMptmax=inputParametersInstance.maxPtInterference();
@@ -582,13 +590,27 @@ void Gammaavectormeson::momenta(double W,double Y,
 		    bslope_tdist = 4.63 + 4.*0.164*log(Wgammap/90.0);
 		    if( N0 <= 1 )cout<<" ATTENTION: Using energy dependent value of bslope!"<<endl; 
 		    break;
+		  case 3:
+					// H1 dissociative process shape: dN/dt ~ (1 + bt/n)^{-n}
+			bslope_tdist = _bslopeVal
+			if( N0 <= 1 )cout<<" ATTENTION: Using H1 dissociative t-distribution, b = "<<_bslopeVal<<", n = "<<_bslopeN<<", t_max = "<<_bslopeTmax<<endl;
+			break;
+
 		  default:
 		    cout<<" Undefined setting for BSLOPE_DEFINITION "<<endl;
 		}
 
 	        xtest = _randy->Rndom(); 
-		// t2 = (-1./_VMbslope)*log(xtest);
-		t2 = (-1./bslope_tdist)*log(xtest);
+		
+		if(_bslopeDef == 3){
+			const double kexp = _bslopeN - 1.;
+			const double Fmax = 1. - pow(1. + bslope_tdist*_bslopeTmax/_bslopeN, -kexp);
+
+		}else{
+			// t2 = (-1./_VMbslope)*log(xtest);
+			t2 = (-1./bslope_tdist)*log(xtest);
+			t2 = (_bslopeN/bslope_tdist)*(pow(1. - xtest*Fmax, -1./kexp) - 1.);
+		}
 		pt2 = sqrt(1.*t2);
 	    }
 	} else {

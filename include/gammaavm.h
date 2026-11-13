@@ -99,6 +99,10 @@ class Gammaavectormeson : public eventChannel
   double _VMdpt;
   int    _bslopeDef;
   double _bslopeVal;
+  // New test
+  double _bslopeN;
+  double _bslopeTmax;
+  // ---
   double _pEnergy;
   nBodyPhaseSpaceGen* _phaseSpaceGen;
   

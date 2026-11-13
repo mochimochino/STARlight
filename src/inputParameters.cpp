@@ -89,6 +89,10 @@ inputParameters::inputParameters()
 	  _axionMass("AXION_MASS", 50, NOT_REQUIRED), // AXION HACK
 	  _bslopeDefinition("BSLOPE_DEFINITION", 0, NOT_REQUIRED),
 	  _bslopeValue("BSLOPE_VALUE", 4.0, NOT_REQUIRED),
+	  // New test
+	  _bslopeN("BSLOPE_N", 3.58, NOT_REQUIRED),
+	  _bslopeTmax("BSLOPE_TMAX", 3.6, NOT_REQUIRED),
+	  // ---
 	  _printVM("PRINT_VM", 0, NOT_REQUIRED),
 	  _impulseVM("SELECT_IMPULSE_VM", 0, NOT_REQUIRED),
 	  _quantumGlauber("QUANTUM_GLAUBER", 0, NOT_REQUIRED),
@@ -239,6 +243,10 @@ inputParameters::inputParameters()
 	_ip.addParameter(_axionMass); // AXION HACK
 	_ip.addParameter(_bslopeDefinition);
 	_ip.addParameter(_bslopeValue);
+	// New test
+	_ip.addParameter(_bslopeN);
+	_ip/addParameter(_bslopeTmax);
+	// ---
 	_ip.addParameter(_printVM);
 	_ip.addParameter(_impulseVM);
 	_ip.addParameter(_quantumGlauber);
