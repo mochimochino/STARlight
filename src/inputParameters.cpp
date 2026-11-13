@@ -245,7 +245,7 @@ inputParameters::inputParameters()
 	_ip.addParameter(_bslopeValue);
 	// New test
 	_ip.addParameter(_bslopeN);
-	_ip/addParameter(_bslopeTmax);
+	_ip.addParameter(_bslopeTmax);
 	// ---
 	_ip.addParameter(_printVM);
 	_ip.addParameter(_impulseVM);

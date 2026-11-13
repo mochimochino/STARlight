@@ -605,11 +605,10 @@ void Gammaavectormeson::momenta(double W,double Y,
 		if(_bslopeDef == 3){
 			const double kexp = _bslopeN - 1.;
 			const double Fmax = 1. - pow(1. + bslope_tdist*_bslopeTmax/_bslopeN, -kexp);
-
+			t2 = (_bslopeN/bslope_tdist)*(pow(1. - xtest*Fmax, -1./kexp) - 1.);
 		}else{
 			// t2 = (-1./_VMbslope)*log(xtest);
 			t2 = (-1./bslope_tdist)*log(xtest);
-			t2 = (_bslopeN/bslope_tdist)*(pow(1. - xtest*Fmax, -1./kexp) - 1.);
 		}
 		pt2 = sqrt(1.*t2);
 	    }
