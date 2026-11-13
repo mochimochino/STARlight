@@ -592,7 +592,7 @@ void Gammaavectormeson::momenta(double W,double Y,
 		    break;
 		  case 3:
 					// H1 dissociative process shape: dN/dt ~ (1 + bt/n)^{-n}
-			bslope_tdist = _bslopeVal
+			bslope_tdist = _bslopeVal;
 			if( N0 <= 1 )cout<<" ATTENTION: Using H1 dissociative t-distribution, b = "<<_bslopeVal<<", n = "<<_bslopeN<<", t_max = "<<_bslopeTmax<<endl;
 			break;
 
